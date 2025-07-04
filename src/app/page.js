@@ -17,40 +17,50 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-4 bg-gray-50 p-6 rounded-lg shadow"
-      >
-        <label className="font-semibold">What would you like to enter?</label>
-        <select
-          value={type}
-          onChange={(e) => setType(e.target.value)}
-          className="border p-2 rounded"
-        >
-          <option value="dish">Dish</option>
-          <option value="wine">Wine</option>
-        </select>
-        <input
-          type="text"
-          placeholder={`Enter your ${type}`}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="border p-2 rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="bg-purple-700 text-white py-2 rounded hover:bg-purple-800"
-        >
-          Get Pairing
-        </button>
-      </form>
-      {result && (
-        <div className="mt-4 p-4 bg-green-50 border-l-4 border-green-400">
-          {result}
-        </div>
-      )}
-    </div>
+    <main className="min-h-screen bg-cream flex flex-col justify-center items-center px-6 py-12">
+      <div className="max-w-3xl w-full bg-white shadow-lg rounded-xl p-10">
+        <h1 className="text-4xl font-heading text-burgundy mb-6 text-center">
+          Discover Your Perfect Wine & Dish Pairing
+        </h1>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <label className="font-semibold text-charcoal">Choose what to enter:</label>
+          <select
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+            className="border border-charcoal rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold transition"
+          >
+            <option value="dish">Dish</option>
+            <option value="wine">Wine</option>
+          </select>
+
+          <label htmlFor="inputValue" className="font-semibold text-charcoal">
+            Enter your {type}
+          </label>
+          <input
+            id="inputValue"
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder={`Type a ${type}...`}
+            required
+            className="border border-charcoal rounded px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold transition"
+          />
+
+          <button
+            type="submit"
+            className="bg-burgundy text-cream py-3 rounded font-semibold hover:bg-gold hover:text-charcoal transition-colors duration-300"
+          >
+            Get Pairing
+          </button>
+        </form>
+
+        {result && (
+          <div className="mt-8 p-6 bg-green-50 border-l-8 border-green-400 text-green-800 font-semibold rounded shadow">
+            {result}
+          </div>
+        )}
+      </div>
+    </main>
   );
 }
