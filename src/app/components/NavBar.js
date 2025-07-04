@@ -1,22 +1,22 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-export default function NavBar() {
+export default function NavBar({ fontHeading }) {
   return (
-    <nav className="flex flex-wrap items-center justify-between p-4 bg-purple-800 text-white">
-      <div className="text-xl font-bold">
+    <nav className="bg-burgundy text-cream p-6 flex flex-wrap items-center justify-between shadow-md">
+      <div className={`text-3xl font-bold ${fontHeading}`}>
         <Link href="/">Vino Pairings</Link>
       </div>
-      <div className="flex gap-4 mt-2 sm:mt-0">
-        <Link href="/" className="hover:text-purple-300">
+      <div className="flex gap-6 mt-4 sm:mt-0 text-lg">
+        <Link href="/" className="hover:text-gold transition-colors duration-300">
           Home
         </Link>
-        <Link href="/about" className="hover:text-purple-300">
+        <Link href="/about" className="hover:text-gold transition-colors duration-300">
           About
         </Link>
-        <Link href="/history" className="hover:text-purple-300">
+        <Link href="/history" className="hover:text-gold transition-colors duration-300">
           History
         </Link>
-        <Link href="/contact" className="hover:text-purple-300">
+        <Link href="/contact" className="hover:text-gold transition-colors duration-300">
           Contact
         </Link>
       </div>
