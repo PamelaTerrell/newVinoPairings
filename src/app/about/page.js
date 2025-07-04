@@ -8,14 +8,16 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <div className="prose prose-lg mx-auto mt-8 p-4">
-      <h1>About Vino Pairings</h1>
+      <h1 className="text-3xl md:text-4xl font-sans font-extralight text-emerald-600 italic mb-6">
+        Welcome to Vino Pairings
+      </h1>
       <div className="flex flex-col items-center">
         <Image
           src="/Me.jpg"
           alt="Photo of Pamela Terrell"
           width={200}
           height={200}
-          objectFit="contain"
+          style={{ objectFit: 'contain' }}
           className="rounded-full border border-gray-300 shadow"
         />
         <p className="mt-4 text-center">
