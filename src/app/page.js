@@ -28,6 +28,8 @@ export default function Home() {
     'spaghetti': 'Chianti',
     'baked ziti': 'Montepulciano',
     'pasta': 'Sangiovese',
+    'lasagna': 'Sangiovese',
+    'hot dog': 'Zinfandel',
     'risotto': 'Soave',
     'eggs': 'Prosecco',
     'omelette': 'Prosecco',
@@ -47,7 +49,6 @@ export default function Home() {
     'tuna fish': 'Albariño'
   };
 
-  // Reverse lookup: wine -> array of dishes
   const reversePairings = Object.entries(pairings).reduce((acc, [dish, wine]) => {
     if (!acc[wine]) acc[wine] = [];
     acc[wine].push(dish);
@@ -83,52 +84,83 @@ export default function Home() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 flex flex-col items-center">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-col gap-5 backdrop-blur-lg bg-white/60 border border-gray-200 shadow-xl p-8 rounded-2xl w-full transition duration-300"
-      >
-        <h1 className="text-2xl md:text-3xl font-extrabold text-gray-800 text-center">
-          Discover Your Perfect Pairing
-        </h1>
+    <div className="min-h-screen bg-[#f9f6ef] text-[#4b3f2f] font-serif">
+      {/* Hero Image */}
+      <div className="relative w-full h-72 md:h-96 mb-8 shadow-lg overflow-hidden">
+  <img
+    src="/picnicwine.png"
+    alt="Picnic with wine and bread"
+    className="object-cover w-full h-full brightness-90"
+  />
+  <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs p-2 text-center">
+    Photo by{' '}
+    <a
+      href="https://unsplash.com/@juliesdfg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      className="underline hover:text-gray-300"
+    >
+      Julie Sd
+    </a>{' '}
+    on{' '}
+    <a
+      href="https://unsplash.com/photos/a-group-of-wine-glasses-sitting-on-top-of-a-table-fDTv0BqaiFw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      className="underline hover:text-gray-300"
+    >
+      Unsplash
+    </a>
+  </div>
+</div>
 
-        <div className="flex flex-col gap-2">
-          <label className="font-medium text-gray-700">
-            What would you like to enter?
-          </label>
-          <select
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
-          >
-            <option value="dish">Dish</option>
-            <option value="wine">Wine</option>
-          </select>
-        </div>
+      
 
-        <input
-          type="text"
-          placeholder={`Enter your ${type}`}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
-          required
-        />
-
-        <button
-          type="submit"
-          className="bg-gradient-to-r from-purple-600 to-pink-500 text-white font-semibold py-2 rounded-lg hover:scale-105 transition-transform"
+      <div className="max-w-3xl mx-auto p-6 flex flex-col items-center">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-5 bg-[#fdfaf3] border border-[#d8cfc4] shadow-md p-8 rounded w-full"
         >
-          Get Pairing
-        </button>
-      </form>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-[#4b3f2f] text-center">
+            Discover Your Perfect Pairing
+          </h1>
 
-      {result && (
-        <div
-          className="mt-6 p-6 max-w-xl w-full bg-gradient-to-br from-purple-50 to-pink-50 border-l-4 border-purple-400 text-gray-800 rounded-lg shadow transition-opacity duration-500 animate-fadeIn"
-          dangerouslySetInnerHTML={{ __html: result.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}
-        />
-      )}
+          <div className="flex flex-col gap-2">
+            <label className="font-medium">
+              What would you like to enter?
+            </label>
+            <select
+              value={type}
+              onChange={(e) => setType(e.target.value)}
+              className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-[#a37c58]"
+            >
+              <option value="dish">Dish</option>
+              <option value="wine">Wine</option>
+            </select>
+          </div>
+
+          <input
+            type="text"
+            placeholder={`Enter your ${type}`}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="border p-2 rounded focus:outline-none focus:ring-2 focus:ring-[#a37c58]"
+            required
+          />
+
+          <button
+            type="submit"
+            className="bg-[#a37c58] text-white font-semibold py-2 rounded hover:bg-[#8b684a] transition"
+          >
+            Get Pairing
+          </button>
+        </form>
+
+        {result && (
+          <div
+            className="mt-6 p-6 max-w-xl w-full bg-[#f4ede4] border-l-4 border-[#a37c58] text-[#4b3f2f] rounded shadow transition-opacity duration-500 animate-fadeIn"
+            dangerouslySetInnerHTML={{
+              __html: result.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            }}
+          />
+        )}
+      </div>
 
       <style jsx global>{`
         @keyframes fadeIn {
@@ -143,6 +175,9 @@ export default function Home() {
         }
         .animate-fadeIn {
           animation: fadeIn 0.5s ease-out;
+        }
+        body {
+          font-family: Georgia, serif;
         }
       `}</style>
     </div>
